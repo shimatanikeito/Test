@@ -33,6 +33,24 @@ for i in range(len(skeleton)):
     thickness=3
     )
 
+pointx = int((int(keypoints.data[0][5][0])+int(keypoints.data[0][6][0])+int(keypoints.data[0][12][0])+int(keypoints.data[0][11][0]))/4)
+pointy = int((int(keypoints.data[0][5][1])+int(keypoints.data[0][6][1])+int(keypoints.data[0][12][1])+int(keypoints.data[0][11][1]))/4)
+
+
+for i in range(2):
+    cv2.line(image,
+    (int(keypoints.data[0][5 + 6*i][0]), int(keypoints.data[0][5 + 6*i][1])),
+    (pointx, pointy),
+    (0, 0, 255),
+    thickness=3
+    )
+    cv2.line(image,
+    (int(keypoints.data[0][6 + 6*i][0]), int(keypoints.data[0][6 + 6*i][1])),
+    (pointx, pointy),
+    (0, 0, 255),
+    thickness=3
+    )
+    
 #点を描く
 for i in range(keypoints.data[0].size(0)-5):
     cv2.circle(
@@ -43,8 +61,6 @@ for i in range(keypoints.data[0].size(0)-5):
         -1
     )
 
-pointx = int((int(keypoints.data[0][5][0])+int(keypoints.data[0][6][0])+int(keypoints.data[0][12][0])+int(keypoints.data[0][11][0]))/4)
-pointy = int((int(keypoints.data[0][5][1])+int(keypoints.data[0][6][1])+int(keypoints.data[0][12][1])+int(keypoints.data[0][11][1]))/4)
 cv2.circle(
     image,
     (pointx, pointy),
@@ -52,7 +68,6 @@ cv2.circle(
     (0,225,255),
     -1
     )
-
 #openCVで画像表示
 cv2.imshow('ex1.jpg', image)
 cv2.waitKey(0)
