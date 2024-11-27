@@ -1,4 +1,3 @@
-git add.
-git commit -m "commit"
-git push origin main 
-リポジトリに代入
+git add . 全部加える
+git commit -m "commit"　コミット
+git push origin main リポジトリに代入
