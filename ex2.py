@@ -22,7 +22,8 @@ for i in range(len(results[0].boxes)):
     cv2.rectangle(image,
     (int(results[0].boxes[i].data[0][0]), int(results[0].boxes[i].data[0][1])),
     (int(results[0].boxes[i].data[0][2]), int(results[0].boxes[i].data[0][3])),
-    (0, 255, 255))
+    (0, 0, 255),
+    thickness=2)
 #openCVで画像表示
 cv2.imshow('ex2.jpg', image)
 cv2.waitKey(0)
