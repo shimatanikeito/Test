@@ -17,16 +17,24 @@ for box in boxes:
     print(box.data)
 print(results[0].names)
 
-temp = -1
+position = []
 for i in range(len(results[0].boxes)):
-    area = (int(results[0].boxes[i].data[0][2]) - int(results[0].boxes[i].data[0][0])) * (int(results[0].boxes[i].data[0][3]) - int(results[0].boxes[i].data[0][1]))
+    x1 = int(results[0].boxes[i].data[0][0])
+    y1 = int(results[0].boxes[i].data[0][1])
+    x2 = int(results[0].boxes[i].data[0][2])
+    y2 = int(results[0].boxes[i].data[0][3])
+    position.append([x1, y1, x2, y2])
+
+temp = -1
+for i in range(len(position)):
+    area = (position[i][2] - position[i][0]) * (position[i][3] - position[i][1])
     print("area :", area)
     if (area > temp):
         temp = area
-        amax_x1 = int(results[0].boxes[i].data[0][0])
-        amax_y1 = int(results[0].boxes[i].data[0][1])
-        amax_x2 = int(results[0].boxes[i].data[0][2])
-        amax_y2 = int(results[0].boxes[i].data[0][3])
+        amax_x1 = position[i][0]
+        amax_y1 = position[i][1]
+        amax_x2 = position[i][2]
+        amax_y2 = position[i][3]
 
 print("max_area :", temp)
 cv2.rectangle(image,
