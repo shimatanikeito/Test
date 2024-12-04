@@ -72,4 +72,3 @@ cv2.circle(
 cv2.imshow('ex1.jpg', image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-
