@@ -26,15 +26,15 @@ for i in range(len(results[0].boxes)):
     position.append([x1, y1, x2, y2])
 
 temp = -1
-for i in range(len(position)):
-    area = (position[i][2] - position[i][0]) * (position[i][3] - position[i][1])
+for x1, y1, x2, y2 in position:
+    area = (x2 - x1) * (y2 - y1)
     print("area :", area)
     if (area > temp):
         temp = area
-        amax_x1 = position[i][0]
-        amax_y1 = position[i][1]
-        amax_x2 = position[i][2]
-        amax_y2 = position[i][3]
+        amax_x1 = x1
+        amax_y1 = y1
+        amax_x2 = x2
+        amax_y2 = y2
 
 print("max_area :", temp)
 cv2.rectangle(image,
