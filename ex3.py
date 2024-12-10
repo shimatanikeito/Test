@@ -47,32 +47,37 @@ while cap.isOpened():
             ])
         for a, b in skeleton:
             cv2.line(frame,
-            (p[a][0], p[a][1]),
-            (p[b][0], p[b][1]),
+            tuple(p[a]),
+            tuple(p[b]),
             (255, 0, 0),
             thickness=3
             )
 
+        angle = cos_formula(p[6], p[8], p[12])
         #角度判定（赤色に変化）
-        if(cos_formula(p[6], p[8], p[12]) >= 80 and cos_formula(p[6], p[8], p[12]) <= 100):
-            temp = [[p[6], p[8]], [p[6], p[12]]]
-            for p1, p2 in temp:
-                cv2.line(frame,
-                (p1[0], p1[1]),
-                (p2[0], p2[1]),
-                (0, 0, 255),
+        if(80 <= angle <= 100):
+            cv2.line(frame, 
+                tuple(p[6]), 
+                tuple(p[8]), 
+                (0, 0, 255), 
                 thickness=3
-                )
+            )
+            cv2.line(frame, 
+                tuple(p[6]), 
+                tuple(p[12]), 
+                (0, 0, 255), 
+                thickness=3
+            )
 
         #骨格の点描画
-        for i in range(keypoints.data[0].size(0)-5):
-            cv2.circle(
-            frame,
-            (p[i+5][0], p[i+5][1]),
-            10,
-            (0,225,255),
-            -1
-            )
+        for i, j in  enumerate(p):
+            if (i > 4):
+                cv2.circle(frame,
+                tuple(j),
+                10,
+                (0,225,255),
+                -1
+                )
 
         # 注釈付きのフレームを表示
         cv2.imshow("YOLOv8トラッキング", frame)
