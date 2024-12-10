@@ -37,7 +37,7 @@ while cap.isOpened():
 
         #骨格データを座標配列pに格納
         p = []
-        for x, y, i in keypoints.data[0]:
+        for x, y, _ in keypoints.data[0]:
             position(x, y)
 
         #ボーン描画
