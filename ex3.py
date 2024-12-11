@@ -63,8 +63,8 @@ while cap.isOpened():
                 thickness=3
             )
             cv2.line(frame, 
-                tuple(p[6]), 
-                tuple(p[12]), 
+                tuple(p[8]), 
+                tuple(p[10]), 
                 (0, 0, 255), 
                 thickness=3
             )
