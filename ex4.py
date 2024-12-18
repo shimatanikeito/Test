@@ -16,7 +16,7 @@ keypoints_1 = results_1[0].keypoints
 video_path = "ex3b.mp4"
 cap = cv2.VideoCapture(video_path)
 
-
+# リスト間の距離
 def dist_frame(box1, box2):
     return np.linalg.norm(box1 - box2)
 
@@ -27,6 +27,7 @@ p_1 = np.array([[float(x), float(y)]for x, y, _ in keypoints_1.data[0]])
         
 frame_count = 0
 match_frame = 0
+#pythonでの最大値
 dist  = sys.float_info.max
 # ビデオフレームをループする
 while cap.isOpened():
@@ -43,13 +44,15 @@ while cap.isOpened():
 
         #骨格データを座標配列pに格納
         p_2 = np.array([[float(x), float(y)]for x, y, _ in keypoints_2.data[0]])
-        #フレームと画像が一致ならばループから抜ける
+
+        #距離小さければ記録
         temp = dist_frame(p_1, p_2)
         if( temp < dist):
             match_frame = frame_count
             dist = temp
         print(dist, match_frame)
         
+        #経過フレーム表示
         if frame_count % 10 == 0:
             print(frame_count, "フレーム経過")
     else:
