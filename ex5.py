@@ -35,7 +35,7 @@ notPlayer_y = -1
 for _,  y1, _, _ in position:
     if y1 > notPlayer_y:
         notPlayer_y = y1
-
+        
 #青ユニフォームを認識
 for x1, y1, x2, y2 in position:
     crip = Himg[y1:y2, x1:x2]
